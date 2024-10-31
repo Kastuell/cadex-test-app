@@ -1,3 +1,9 @@
+"use client";
+
+import { formSchema, FormSchemaValuesT } from "@/shared/constants";
+import { postData } from "@/shared/services/form";
+import styled from "@emotion/styled";
+import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Button,
   Container,
@@ -6,89 +12,148 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import { useForm } from "react-hook-form";
 import { css } from "../../../../styled-system/css";
+import { CtaSubmited } from "./cta-submited";
+import { FormErrorMessage } from "./form-error-message";
+
+const CustomInput = styled(TextField)({
+  // by this way it's easy to styling mui TextField component
+  "& label.Mui-focused": {
+    color: "#463F3A",
+  },
+  "& .MuiInput-underline:after": {
+    borderBottomColor: "#463F3A",
+  },
+  "& .MuiOutlinedInput-root": {
+    "& fieldset": {
+      borderColor: "#8A817C",
+    },
+    "&:hover fieldset": {
+      borderColor: "black",
+    },
+    "&.Mui-focused fieldset": {
+      borderColor: "#8A817C",
+    },
+  },
+});
 
 export const CtaForm = () => {
+  const {
+    register,
+    handleSubmit,
+
+    formState: { errors, isSubmitted },
+  } = useForm<FormSchemaValuesT>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      email: "",
+      message: "",
+      name: "",
+    },
+  });
+
+  const onSubmit = (data: FormSchemaValuesT) => {
+    postData(data);
+    console.log(data);
+  };
+
   return (
-    <div>
-      <Container sx={{ maxWidth: { xs: "sm", lg: "md" } }}>
-        <Typography
-          color="textPrimary"
-          variant="h1"
-          fontWeight={700}
-          align="center"
-          sx={{ mt: 5, fontSize: { xs: 40, md: 60 } }}
-        >
-          Only CTA on the page
-        </Typography>
-        <div
-          className={css({
-            bgColor: "white",
-            sm: {
-              mt: "1rem",
-            },
-            md: {
-              mt: "2rem",
-            },
-            padding: "4rem",
-            mx: "auto",
-            borderRadius: "2rem",
-          })}
-        >
-          <form
+    <Container>
+      {!isSubmitted ? (
+        <>
+          <Typography
+            color="textPrimary"
+            variant="h1"
+            fontWeight={700}
+            align="center"
+            sx={{ mt: 5, fontSize: { xs: 30, md: 60 } }}
+          >
+            Only CTA on the page
+          </Typography>
+          <div
             className={css({
-              display: "flex",
-              justifyContent: "center",
-              flexDirection: "column",
+              bgColor: "white",
+              mt: "2rem",
+              padding: "2rem",
+              mx: "auto",
+              borderRadius: "2rem",
+              md: {
+                w: "40%",
+              },
             })}
           >
-            <Stack
+            <form
+              onSubmit={handleSubmit(onSubmit)}
               className={css({
-                width: "full",
+                display: "flex",
+                justifyContent: "center",
+                flexDirection: "column",
               })}
-              spacing={2}
             >
-              <TextField
-                type="text"
-                variant="outlined"
-                color="secondary"
-                label="Name"
-                fullWidth
-                required
-              />
-              <TextField
-                type="email"
-                variant="outlined"
-                color="secondary"
-                label="Email"
-                fullWidth
-                required
-              />
-              <TextareaAutosize
-                maxRows={4}
-                aria-label="maximum height"
-                placeholder="Message *"
+              <Stack
                 className={css({
-                  border: "1px solid #BCB8B1",
-                  borderRadius: "0.3rem",
-                  padding: "0.8rem",
-                  _focus: {
-                    outline: "1.5px solid #BCB8B1",
-                  },
+                  width: "full",
                 })}
-              />
-            </Stack>
-            <Button
-              sx={{ mt: 2 }}
-              variant="contained"
-              color="secondary"
-              type="submit"
-            >
-              Submit
-            </Button>
-          </form>
-        </div>
-      </Container>
-    </div>
+                spacing={2}
+              >
+                <CustomInput
+                  type="text"
+                  variant="outlined"
+                  color="secondary"
+                  label="Name"
+                  fullWidth
+                  required
+                  {...register("name")}
+                  size="small"
+                />
+                <FormErrorMessage isError={errors.name !== undefined} />
+
+                <CustomInput
+                  type="email"
+                  variant="outlined"
+                  color="secondary"
+                  label="Email"
+                  fullWidth
+                  required
+                  {...register("email")}
+                  size="small"
+                />
+                <FormErrorMessage isError={errors.email !== undefined} />
+
+                <TextareaAutosize
+                  id="textarea1" // id for globals.css
+                  maxRows={4}
+                  aria-label="maximum height"
+                  placeholder="Message *"
+                  className={css({
+                    borderRadius: "0.3rem",
+                    padding: "0.3rem 0.8rem",
+                    color: "primary",
+                    fontWeight: "450",
+                    _placeholder: {
+                      color: "primary",
+                    },
+                    outline: {
+                      base: "1px solid #8A817C",
+                      _focusVisible: {
+                        base: "2px solid #8A817C",
+                      },
+                    },
+                  })}
+                  {...register("message")}
+                />
+                <FormErrorMessage isError={errors.message !== undefined} />
+              </Stack>
+              <Button sx={{ mt: 2 }} variant="contained" type="submit">
+                Submit
+              </Button>
+            </form>
+          </div>
+        </>
+      ) : (
+        <CtaSubmited />
+      )}
+    </Container>
   );
 };

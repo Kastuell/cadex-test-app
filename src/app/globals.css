@@ -1,1 +1,10 @@
 @layer reset, base, tokens, recipes, utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+/* panda css doesn't have a :not pseudo-class, so i decided to make it here */
+#textarea1:not(:focus-visible):hover {
+  outline: 1px solid black;
+}

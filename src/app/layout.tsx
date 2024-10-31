@@ -4,9 +4,9 @@ import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 import { ThemeProvider } from "@mui/material/styles";
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
+import { css } from "../../styled-system/css";
 import theme from "../theme";
 import "./globals.css";
-import { css } from "../../styled-system/css";
 
 const roboto = Roboto({
   weight: ["300", "400", "500", "700"],
@@ -21,6 +21,13 @@ export const metadata: Metadata = {
     template: `%s | ${PROJECT_NAME}`,
   },
   description: `${PROJECT_NAME} test app`,
+  authors: [
+    {
+      name: "kastuell",
+      url: "https://github.com/Kastuell",
+    },
+  ],
+  creator: "katuell",
 };
 
 export default function RootLayout({
@@ -39,11 +46,10 @@ export default function RootLayout({
                 display: "flex",
                 flexDirection: "column",
                 minH: "screen",
-                justifyContent: "space-between"
+                justifyContent: "space-between",
               })}
             >
               <Header />
-
               {children}
               <Footer />
             </div>
