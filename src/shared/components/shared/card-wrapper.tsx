@@ -1,7 +1,7 @@
-import { Container, Grid2 } from "@mui/material";
+import { Container, Grid2, Typography } from "@mui/material";
 import { css } from "../../../../styled-system/css";
-import { ContactUsButton } from "../ui";
 import { BasicCard } from "./card";
+import { ContactUsButton } from "./contact-us-button";
 
 type CardStoreT = {
   title: string;
@@ -57,20 +57,20 @@ export const CardWrapper = () => {
           alignItems: "center",
         })}
       >
-        <h2
-          className={css({
-            fontSize: "5xl",
-            fontWeight: "bold",
-            lineHeight: "snug",
-            textAlign: "center",
-          })}
+        <Typography
+          color="textPrimary"
+          variant="h2"
+          fontWeight={700}
+          sx={{
+            fontSize: { xs: 40, md: 60 },
+          }}
         >
           Also very important title
-        </h2>
-        <Grid2 container columns={{ lg: 3 }} spacing={2}>
+        </Typography>
+        <Grid2 container columns={{ lg: 3, xs: 1, sm: 2 }} spacing={2}>
           {cardStore.map(({ title, description }, index) => (
-            <Grid2 size={1}>
-              <BasicCard key={index} description={description} title={title} />
+            <Grid2 key={index} size={1}>
+              <BasicCard description={description} title={title} />
             </Grid2>
           ))}
         </Grid2>

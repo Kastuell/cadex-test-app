@@ -1,11 +1,17 @@
 import { Container, Divider } from "@mui/material";
 import Link from "next/link";
 import { css } from "../../../../styled-system/css";
-import { ContactUsButton } from "../ui";
+import { ContactUsButton } from "./contact-us-button";
 
 export const Header = () => {
   return (
-    <header>
+    <header
+      className={css({
+        bgColor: "secondary",
+        position: "sticky",
+        top: "0"
+      })}
+    >
       <Container
         maxWidth="lg"
         className={css({
@@ -17,7 +23,7 @@ export const Header = () => {
           alignItems: "center",
         })}
       >
-        <Link href="/">Some Company</Link>
+        <Link href="/">CADEX</Link>
         <ContactUsButton />
       </Container>
       <Divider />

@@ -8,5 +8,11 @@ const ReactPlayer = dynamic(() => import("react-player/youtube"), {
 });
 
 export const Video = () => {
-  return <ReactPlayer url="https://www.youtube.com/watch?v=dQw4w9WgXcQ" />;
+  return (
+    <ReactPlayer
+      className="react-player"
+      width="100%"
+      url="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+    />
+  );
 };

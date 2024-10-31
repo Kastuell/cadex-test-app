@@ -1,12 +1,13 @@
-import { Container } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 import { css } from "../../../../styled-system/css";
 import { Video } from "./video";
+import theme from "@/theme";
 
 export const Intro = () => {
   return (
     <div
       className={css({
-        bgColor: "gray.100",
+        bgColor: "grayish",
       })}
     >
       <Container
@@ -15,7 +16,11 @@ export const Intro = () => {
           display: "flex",
           justifyContent: "space-between",
           padding: "5rem 0 5rem 0",
-          gap: "3rem"
+          gap: "3rem",
+          flexDirection: "column",
+          md: {
+            flexDirection: "row",
+          },
         })}
       >
         <div
@@ -23,26 +28,21 @@ export const Intro = () => {
             maxWidth: "450px",
           })}
         >
-          <h2
-            className={css({
-              fontSize: "5xl",
-              fontWeight: "bold",
-              lineHeight: "snug",
-            })}
+          <Typography
+            color="textPrimary"
+            variant="h1"
+            fontWeight={700}
+            sx={{
+              fontSize:  {xs: 40, md: 60},
+            }}
           >
             Most important title on the page
-          </h2>
-          <p
-            className={css({
-              fontSize: "lg",
-              fontWeight: "light",
-              marginTop: "10px",
-            })}
-          >
+          </Typography>
+          <Typography color="textSecondary" variant="subtitle1" sx={{ mt: 2 }}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
             mattis, leo et condimentum ultricies, sem urna convallis metus, vel
             suscipit nibh lacus tincidunt ante
-          </p>
+          </Typography>
         </div>
         <Video />
       </Container>

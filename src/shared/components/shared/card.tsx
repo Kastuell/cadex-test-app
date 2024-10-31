@@ -8,10 +8,10 @@ interface Icard {
 
 export const BasicCard = ({ title, description }: Icard) => {
   return (
-    <Card variant="outlined"   className={css({
+    <Card variant="outlined" className={css({
         padding: "1.5rem",
       })}> 
-      <Typography color="textPrimary" variant="h4">
+      <Typography color="textPrimary" variant="h6">
         {title}
       </Typography>
       <Typography color="textSecondary" variant="body1">
