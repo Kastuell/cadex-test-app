@@ -30,11 +30,11 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Hosting details
 
-This project was host on Vercel(https://vercel.com) which higly recomended to deploy next js app.
+This project was host on [Vercel](https://vercel.com) which higly recomended to deploy next js app.
 
 ## Styling
 
-For styling there is used Panda CSS(https://panda-css.com/) and component library Material UI(https://mui.com/)
+For styling there is used Panda [CSS](https://panda-css.com/) and component library [Material UI](https://mui.com/)
 
 ## SEO
 
@@ -48,6 +48,8 @@ Next js provides some syntactic sugar when writing meta tags. In our case site i
 - applicationName;
 - keywords;
 - formatDetection.
+
+Right using of semantic tags.
 
 ## Performance strategies
 
