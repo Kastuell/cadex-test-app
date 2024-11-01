@@ -28,6 +28,14 @@ export const metadata: Metadata = {
     },
   ],
   creator: "katuell",
+  generator: "CADEX",
+  applicationName: "CADEX",
+  keywords: ["CADEX test"],
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
 };
 
 export default function RootLayout({
