@@ -34,7 +34,7 @@ This project was host on [Vercel](https://vercel.com) which higly recomended to 
 
 ## Styling
 
-For styling there is used Panda [CSS](https://panda-css.com/) and component library [Material UI](https://mui.com/)
+For styling there is used [Panda CSS](https://panda-css.com/) and component library [Material UI](https://mui.com/)
 
 ## SEO
 
